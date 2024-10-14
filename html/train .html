@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Reservation</title>
+    <link rel="stylesheet" href="train.css">
+</head>
+<body>
+    <div class="form">
+        <h1>Railway Reservation System</h1>
+        <div class="reserve">
+    <div class="Detail">
+    <label for="name">Name:</label> 
+    <input type="text" id="name" name="name">
+    <span id="name_error"></span><br><br>
+    <label for="Phonenumber"> Phone:</label>
+    <input type="tel" id="Phonenumber" name="Phonenumber" placeholder="Phonenumber" required>
+    <span id="Phonenumber_error"></span><br><br>
+    <label for="aadhar"> Aadhar:</label>
+    <input type="text" id="aadhar" name="aadhar">
+    <span id="aadhar_error"></span><br><br>
+    <label for="age"> Age:</label>
+    <input type="text" id="age" name="age">
+    <span id="age_error"></span><br><br>
+    </div>
+    <div class="Detail">
+        <label for="journeyfrom"> JourneyFrom:</label>
+        <input type="text" id="journeyfrom" name="journeyfrom">
+        <span id="journeyfrom_error"></span><br><br>
+        <label for="journeyto"> JourneyTo:</label>
+        <input type="text" id="journeyto" name="journeyto">
+        <span id="journeyto_error"></span><br><br>
+        <label for="Train"> Train Name:</label>
+        <input type="text" id="train" name="train">
+        <span id="train_error"></span><br><br>
+        <label for="Date"> Date:</label>
+        <input type="date" id="Date" name="Date" required>
+        <span id="Date_error"></span><br><br>
+    </div>
+</div>
+    <button onclick="validate()">Book Ticket</button>
+</div> 
+<script src="train.js"></script>
+</body>
+</html>

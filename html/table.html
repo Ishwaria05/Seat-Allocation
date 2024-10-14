@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Seat </title>
+    <link rel="stylesheet" href="table.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+</head>
+<body>
+    <div class="train-container">
+        <div class="alert">
+        <div class="row">
+            <h2>Compartment 1 :</h2>
+            <div class="seat-box" id="seat-box1">
+                <div class="upper" id="upper1">Upper</div>
+                <div class="middle" id="middle01">Middle</div>
+                <div class="lower" id="lower001">Lower</div>
+            </div>
+                <div class="seat-box" id="seat-box2">
+                <div class="upper" id="upper2">Upper</div>
+                <div class="middle" id="middle3">Middle</div>
+                <div class="lower" id="lower4">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box3">
+                <div class="upper" id="upper5">Upper</div>
+                <div class="middle" id="middle6">Middle</div>
+                <div class="lower" id="lower7">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box4">
+                <div class="upper" id="upper7">Upper</div>
+                <div class="middle" id="middle8">Middle</div>
+                <div class="lower" id="lower9">Lower</div>
+            </div>
+                <div class="seat-box" id="seat-box5">
+                <div class="upper" id="upper10">Upper</div>
+                <div class="middle" id="middle11">Middle</div>
+                <div class="lower" id="lower12">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box6">
+                <div class="upper" id="upper13">Upper</div>
+                <div class="middle" id="middle14">Middle</div>
+                <div class="lower" id="lower15">Lower</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>Compartment 2 :</h2>
+            <div class="seat-box" id="seat-box7">
+                <div class="upper" id="upper16">Upper</div>
+                <div class="middle" id="middle17">Middle</div>
+                <div class="lower" id="lower18">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box8">
+                <div class="upper" id="upper19">Upper</div>
+                <div class="middle" id="middle20">Middle</div>
+                <div class="lower" id="lower21">Lower</div>
+            </div>
+                <div class="seat-box" id="seat-box9">
+                <div class="upper" id="upper22">Upper</div>
+                <div class="middle" id="middle23">Middle</div>
+                <div class="lower" id="lower24">Lower</div>
+            </div>
+                <div class="seat-box" id="seat-box10">
+                <div class="upper" id="upper25">Upper</div>
+                <div class="middle" id="middle26">Middle</div>
+                <div class="lower" id="lower27">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box11">
+                <div class="upper" id="upper28">Upper</div>
+                <div class="middle" id="middle29">Middle</div>
+                <div class="lower" id="lower30">Lower</div>
+            </div>
+            <div class="seat-box" id="seat-box12">
+                <div class="upper" id="upper31">Upper</div>
+                <div class="middle" id="middle32">Middle</div>
+                <div class="lower" id="lower33">Lower</div>
+            </div>
+        </div>
+    </div>
+<script>
+    var Detail = JSON.parse(localStorage.getItem('Detail')) || [];
+    
+    let UpperAllocation = 0;
+    let MiddleAllocation = 0;
+    let LowerAllocation = 0;
+Detail.forEach(bookingarr => {
+    if(bookingarr.age >=60) {
+        const lower = document.getElementsByClassName('lower');
+    
+
+        if(LowerAllocation < lower.length){
+            lower[LowerAllocation].innerHTML = "Allocated";
+            lower[LowerAllocation].classList.add('Allocated');
+
+            lower[LowerAllocation].style.borderColor = 'black';
+            lower[LowerAllocation].style.backgroundColor = 'green';
+
+            const allocation_id = lower[LowerAllocation].getAttribute('id');
+            console.log(allocation_id);
+
+            bookingarr.allocation_id = allocation_id;
+
+            localStorage.setItem('allocate',JSON.stringify(Detail));
+
+            console.log(Detail);
+            LowerAllocation++;
+        }else{
+            console.log('No lower berths available for allocation.')
+        }
+    }else if (bookingarr.age>=40 && bookingarr.age<60) {
+        const middle = document.getElementsByClassName('middle');
+
+        if (MiddleAllocation<middle.length){
+            middle[MiddleAllocation].innerHTML = "Allocated";
+            middle[MiddleAllocation].classList.add('Allocated');
+ 
+            middle[MiddleAllocation].style.borderColor = 'black';
+            middle[MiddleAllocation].style.backgroundColor = 'green';
+
+            const allocation_id = middle[MiddleAllocation].getAttribute('id');
+            console.log(allocation_id);    
+
+            bookingarr.allocation_id = allocation_id;
+
+            localStorage.setItem('allocate',JSON.stringify(Detail));
+
+            console.log(Detail);  
+            MiddleAllocation++;
+        }else{
+            console.log('No middle berths available for allocation.')
+        }
+    }else if (bookingarr.age <=39) {
+        const upper = document.getElementsByClassName('upper');
+
+        if (UpperAllocation<upper.length){
+            upper[UpperAllocation].innerHTML = "Allocated";
+            upper[UpperAllocation].classList.add('Allocated');
+
+            upper[UpperAllocation].style.borderColor = 'black';
+            upper[UpperAllocation].style.backgroundColor = 'green';
+
+            const allocation_id = upper[UpperAllocation].getAttribute('id');
+            console.log(allocation_id);  
+
+            bookingarr.allocation_id = allocation_id;
+
+            localStorage.setItem('allocate',JSON.stringify(Detail));
+
+            console.log(Detail);
+            UpperAllocation++;
+        }else{
+            console.log('No upper berths available for allocation.')
+        }
+    }   
+
+    var upper = document.querySelectorAll('.upper')
+
+    console.log("-----------------"+upper);
+
+    upper.forEach(ele =>{
+
+        ele.addEventListener('click' , ()=>{
+
+            console.log(ele.id)
+
+            Detail.forEach(val =>{
+
+                if(ele.id == val.allocation_id){
+                    Swal.fire({
+                       title: "Good job!",
+                       text: val.Name + " " + val.age+" "+val.Phone +" "+val.aadhar +" "+val.journeyfrom +" "+val.journeyto +" " +val.date +" "+val.train +" " ,
+                       icon: "success"
+           });
+                }
+            })
+        })
+    })
+    var lower = document.querySelectorAll('.lower')
+
+    console.log("-----------------"+lower);
+
+    lower.forEach(ele =>{
+
+    ele.addEventListener('click' , ()=>{
+
+        console.log(ele.id)
+
+        Detail.forEach(val =>{
+
+            if(ele.id == val.allocation_id){
+                Swal.fire({
+                      title: "Good job!",
+                      text: val.Name + " " + val.age+" "+val.Phone +" "+val.aadhar +" "+val.journeyfrom +" "+val.journeyto +" " +val.date +" "+val.train +" " ,
+                      icon: "success"
+        });  
+            }
+        })
+    })
+})
+var middle = document.querySelectorAll('.middle')
+
+console.log("-----------------"+middle);
+
+middle.forEach(ele =>{
+
+ele.addEventListener('click' , ()=>{
+
+    console.log(ele.id)
+
+    Detail.forEach(val =>{
+
+           if(ele.id == val.allocation_id){
+            Swal.fire({
+             title: "Good job!",
+             text: val.Name + " " + val.age+" "+val.Phone +" "+val.aadhar +" "+val.journeyfrom +" "+val.journeyto +" " +val.date +" "+val.train +" " ,
+             icon: "success"
+        });
+           }
+        })
+    })
+})  
+});
+</script>
+</body>
+</html>
